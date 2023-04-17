@@ -3,7 +3,7 @@ local interiorsActive = false
 local character_selected = false 
 
 ----------- turn on the bar ------
-function EnableResouresIMAP()     -- RequestImap     
+function EnableResouresYMAPS()     -- RequestImap     
     if Config.Unknow == true then
         --RequestImap(_________________)    
         --RequestImap(_________________)   
@@ -26,7 +26,7 @@ end
 -- currently there are two hitching posts. 
 
 ----------- turn off the bar ------
-function DisableResourcesIMAPS()   -- RemoveImap
+function DisableResourcesYMAPS()   -- RemoveImap
     --RemoveImap(-_________________)   
     --RemoveImap(_________________)    
 end
@@ -44,7 +44,7 @@ end
 AddEventHandler('onResourceStop', function(resource) 
     if resource == GetCurrentResourceName() then     
         -- when resource stops disable them, admin is restarting the script
-        DisableResourcesIMAPS() 
+        DisableResourcesYMAPS() 
         DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
     end
 end)
@@ -56,7 +56,7 @@ AddEventHandler('onResourceStart', function(resource)
     if resource == GetCurrentResourceName() then         
         Citizen.Wait(3000)
         -- interiors loads all of these, so we need to disable them 
-        DisableResourcesIMAPS() 
+        DisableResourcesYMAPS() 
         DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
         Citizen.Wait(3000)        
         -- because the character is already logged in on resource "re"start
@@ -82,11 +82,11 @@ Citizen.CreateThread(function()
     end 
     if character_selected == true and interiorsActive == false then 
         --- cleanup any previous scripts loading content
-        DisableResourcesIMAPS() 
+        DisableResourcesYMAPS() 
         DisableResourcesINTERIORS(Config.x, Config.y, Config.z)
 
         -- basically run once after character has loadded in  
-        EnableResouresIMAP() 
+        EnableResouresYMAPS() 
         EnableResouresINTERIORS(Config.x, Config.y, Config.z)
         interiorsActive = true
         unlockDoors()  
